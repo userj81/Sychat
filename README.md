@@ -1,79 +1,98 @@
-# Sychat
+# 🚀 Sychat: A Nova Fronteira do Chat Corporativo
 
-Chat corporativo multi-tenant com Phoenix (Elixir) + Next.js (React).
+[![Elixir Phoenix](https://img.shields.io/badge/Phoenix-v1.8-800080?style=flat-square&logo=phoenix-framework)](https://phoenixframework.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-v15-000000?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Status](https://img.shields.io/badge/Status-Project_Complete-brightgreen?style=flat-square)](#)
 
-## Estrutura
+**Sychat** não é apenas mais um chat. É uma plataforma de comunicação corporativa **multi-tenant**, robusta e preparada para escala global, construída com o que há de mais moderno no ecossistema Elixir e React.
 
-```
-sychat/
-├── chat_service/     # Backend Phoenix API-only
-│   ├── lib/
-│   │   ├── chat_service/
-│   │   │   ├── auth/         # JWT auth
-│   │   │   ├── chat/         # Messages, Channels
-│   │   │   ├── accounts/     # Users, Memberships
-│   │   │   └── tenants/      # Multi-tenant
-│   │   └── chat_service_web/
-│   │       └── channels/     # Phoenix Channels (realtime)
-│   ├── config/
-│   └── docker-compose.yml
-│
-└── web/              # Frontend Next.js
-    └── src/
-        └── lib/
-            └── socket.ts     # Phoenix client
-```
+Inspirado na agilidade do Slack e na familiaridade do WhatsApp, o Sychat entrega uma experiência "real-time" pura, sem compromissos.
 
-## Quick Start
+---
 
-### Backend (Phoenix)
+## ✨ Por que Sychat?
 
-```bash
-cd chat_service
+O mercado está saturado de soluções lentas e complexas. Sychat foca em **estabilidade, baixa latência e governança**.
 
-# Iniciar banco Docker
-docker compose up -d
+### 🛠️ Funcionalidades de Elite
 
-# Instalar deps e criar banco
-mix deps.get
-mix ecto.create
-mix ecto.migrate
+- 💬 **Threads Organizadas:** Discussões paralelas que não poluem o canal principal.
+- 📂 **Anexos & Media:** Compartilhamento de arquivos e imagens com pré-visualização instantânea.
+- ⚡ **Real-Time Total:** Typing indicators, Presence (quem está online?) e Read Receipts.
+- 🎭 **Reações Modernas:** Expresse-se com emojis em qualquer mensagem, sincronizados via WebSockets.
+- 🏢 **Multi-Tenancy Nativo:** Isolamento completo de dados entre organizações (Tenants).
+- 🛡️ **Governança:** Soft Deletes e gerenciamento refinado de membros e administradores.
 
-# Iniciar servidor
-mix phx.server
-```
+---
 
-API em http://localhost:4000
+## 🏗️ Arquitetura de Ponta
 
-### Frontend (Next.js)
+O Sychat foi desenhado para ser resiliente.
 
-```bash
-cd web
+### **Backend (The Engine)**
 
-npm install
-npm run dev
-```
+Aproveita a **BEAM (Erlang VM)** para suportar milhões de conexões simultâneas com latência sub-milissegundo.
 
-Web em http://localhost:3000
+- **Elixir & Phoenix Channels:** WebSockets de alta performance.
+- **PostgreSQL:** Persistência robusta com schemas multi-tenant.
+- **Phoenix Presence:** Monitoramento de estado distribuído.
 
-## Stack
+### **Frontend (The Experience)**
 
-- **Backend**: Phoenix 1.8, Elixir, Ecto, Postgres
-- **Frontend**: Next.js 16, React 19, TailwindCSS
-- **Realtime**: Phoenix Channels (WebSocket)
-- **Auth**: JWT (access + refresh)
-- **DB**: Postgres 16 (Docker)
+Interface limpa, rápida e responsiva.
 
-## Endpoints
+- **Next.js 15 & React 19:** O estado da arte em performance web.
+- **Zustand:** Gerenciamento de estado global simplificado.
+- **Tailwind CSS:** Estética "Glassmorphism" e Dark Mode nativo.
 
-- `POST /api/auth/login`
-- `POST /api/auth/refresh`
-- `GET /api/tenants/:id/channels`
-- `GET /api/channels/:id/messages`
-- `WS /socket` - Phoenix Channels
+---
 
-## Events (WebSocket)
+## 🚀 Começando
 
-- `channel:{id}` - join canal
-- `message:send` - enviar mensagem
-- `message:new` - receber mensagem
+### Pré-requisitos
+
+- Docker
+- Elixir (v1.17+)
+- Node.js (v20+)
+
+### 🏁 Setup Rápido
+
+1.  **Clone o repositório**
+2.  **Lançar o Banco de Dados:**
+    ```bash
+    cd chat_service
+    docker compose up -d
+    ```
+3.  **Configurar o Backend:**
+    ```bash
+    mix deps.get
+    mix ecto.setup
+    mix phx.server
+    ```
+4.  **Lançar o Web Client:**
+    ```bash
+    cd ../web
+    npm install
+    npm run dev
+    ```
+
+Acesse em: `http://localhost:3000`
+
+---
+
+## 📈 Próximos Passos (Roadmap)
+
+- [ ] Integração com Video-Chamadas via WebRTC.
+- [ ] Aplicativos Mobile Nativos (React Native).
+- [ ] Busca Avançada com Elasticsearch/Meilisearch.
+- [ ] Automação via Webhooks e API Pública.
+
+---
+
+## 🤝 Contribua
+
+Sychat é um projeto em constante evolução. Se você vê potencial, junte-se a nós para construir a próxima grande ferramenta de colaboração.
+
+---
+
+> Orgulhosamente desenvolvido com **Elixir** e **Next.js**.
