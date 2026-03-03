@@ -1,0 +1,42 @@
+0 verbose cli /Users/jairflores/.nvm/versions/node/v22.22.0/bin/node /Users/jairflores/.nvm/versions/node/v22.22.0/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.4
+2 info using node@v22.22.0
+3 silly config load:file:/Users/jairflores/.nvm/versions/node/v22.22.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/jairflores/Downloads/syncat/.npmrc
+5 silly config load:file:/Users/jairflores/.npmrc
+6 silly config load:file:/Users/jairflores/.nvm/versions/node/v22.22.0/etc/npmrc
+7 verbose title npm exec create-next-app@latest web --typescript --tailwind --eslint --app --src-dir --import-alias @/* --no-git --use-npm
+8 verbose argv "exec" "--" "create-next-app@latest" "web" "--typescript" "--tailwind" "--eslint" "--app" "--src-dir" "--import-alias" "@/*" "--no-git" "--use-npm"
+9 verbose logfile logs-max:10 dir:/Users/jairflores/Downloads/syncat/.npm-cache/_logs/2026-02-26T19_35_27_848Z-
+10 verbose logfile /Users/jairflores/Downloads/syncat/.npm-cache/_logs/2026-02-26T19_35_27_848Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 http fetch GET 200 https://registry.npmjs.org/npm 665ms
+14 http fetch GET 200 https://registry.npmjs.org/create-next-app 991ms (cache miss)
+15 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+16 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+17 warn exec The following package was not found and will be installed: create-next-app@16.1.6
+18 silly idealTree buildDeps
+19 silly fetch manifest create-next-app@16.1.6
+20 silly packumentCache full:https://registry.npmjs.org/create-next-app cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/create-next-app 347ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/create-next-app set size:undefined disposed:false
+23 silly placeDep ROOT create-next-app@16.1.6 OK for:  want: 16.1.6
+24 silly reify moves {}
+25 silly audit bulk request { 'create-next-app': [ '16.1.6' ] }
+26 http cache create-next-app@https://registry.npmjs.org/create-next-app/-/create-next-app-16.1.6.tgz 0ms (cache hit)
+27 silly tarball no local data for create-next-app@https://registry.npmjs.org/create-next-app/-/create-next-app-16.1.6.tgz. Extracting by manifest.
+28 http fetch GET 200 https://registry.npmjs.org/create-next-app/-/create-next-app-16.1.6.tgz 170ms (cache miss)
+29 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 286ms
+30 silly audit report {}
+31 verbose cwd /Users/jairflores/Downloads/syncat
+32 verbose os Darwin 25.3.0
+33 verbose node v22.22.0
+34 verbose npm  v10.9.4
+35 notice
+35 notice New major version of npm available! 10.9.4 -> 11.11.0
+35 notice Changelog: https://github.com/npm/cli/releases/tag/v11.11.0
+35 notice To update run: npm install -g npm@11.11.0
+35 notice  { force: true, [Symbol(proc-log.meta)]: true }
+36 verbose exit 0
+37 info ok

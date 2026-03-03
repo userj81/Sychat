@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: synchat_db
+    environment:
+      POSTGRES_USER: synchat
+      POSTGRES_PASSWORD: synchat123
+      POSTGRES_DB: chat_service_dev
+    ports:
+      - "5439:5432"
+    volumes:
+      - synchat_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U synchat -d chat_service_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  synchat_pg_data:

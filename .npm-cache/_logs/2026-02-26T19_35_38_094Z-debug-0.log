@@ -1,0 +1,22 @@
+0 verbose cli /Users/jairflores/.nvm/versions/node/v22.22.0/bin/node /Users/jairflores/.nvm/versions/node/v22.22.0/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.4
+2 info using node@v22.22.0
+3 silly config load:file:/Users/jairflores/.nvm/versions/node/v22.22.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/jairflores/Downloads/syncat/.npmrc
+5 silly config load:file:/Users/jairflores/.npmrc
+6 silly config load:file:/Users/jairflores/.nvm/versions/node/v22.22.0/etc/npmrc
+7 verbose title npm exec create-next-app@latest web --typescript --tailwind --eslint --app --src-dir --import-alias @/* --no-git --use-npm
+8 verbose argv "exec" "--" "create-next-app@latest" "web" "--typescript" "--tailwind" "--eslint" "--app" "--src-dir" "--import-alias" "@/*" "--no-git" "--use-npm"
+9 verbose logfile logs-max:10 dir:/Users/jairflores/Downloads/syncat/.npm-cache/_logs/2026-02-26T19_35_38_094Z-
+10 verbose logfile /Users/jairflores/Downloads/syncat/.npm-cache/_logs/2026-02-26T19_35_38_094Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 http fetch GET 200 https://registry.npmjs.org/create-next-app 546ms (cache revalidated)
+14 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+15 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+16 verbose cwd /Users/jairflores/Downloads/syncat
+17 verbose os Darwin 25.3.0
+18 verbose node v22.22.0
+19 verbose npm  v10.9.4
+20 verbose exit 0
+21 info ok
