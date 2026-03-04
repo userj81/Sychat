@@ -7,8 +7,8 @@
 6 silly config load:file:/Users/jairflores/.nvm/versions/node/v22.22.0/etc/npmrc
 7 verbose title npm run build
 8 verbose argv "run" "build"
-9 verbose logfile logs-max:10 dir:/Users/jairflores/Downloads/sychat/web/.npm-cache/_logs/2026-02-28T04_42_35_253Z-
-10 verbose logfile /Users/jairflores/Downloads/sychat/web/.npm-cache/_logs/2026-02-28T04_42_35_253Z-debug-0.log
+9 verbose logfile logs-max:10 dir:/Users/jairflores/Downloads/sychat/web/.npm-cache/_logs/2026-03-04T14_10_46_372Z-
+10 verbose logfile /Users/jairflores/Downloads/sychat/web/.npm-cache/_logs/2026-03-04T14_10_46_372Z-debug-0.log
 11 silly logfile start cleaning logs, removing 1 files
 12 silly logfile done cleaning log files
 13 verbose cwd /Users/jairflores/Downloads/sychat/web

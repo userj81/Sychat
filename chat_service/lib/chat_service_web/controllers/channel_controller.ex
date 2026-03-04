@@ -90,7 +90,9 @@ defmodule ChatServiceWeb.ChannelController do
       id: channel.id,
       name: channel.name,
       type: channel.type,
-      is_private: channel.is_private
+      is_private: channel.type != "public",
+      unread_count: Map.get(channel, :unread_count, 0),
+      last_read_message_id: Map.get(channel, :last_read_message_id, nil)
     }
   end
 

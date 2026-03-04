@@ -40,7 +40,13 @@ defmodule ChatServiceWeb.ChannelChannel do
             id: message.id,
             body: message.body,
             client_id: message.client_id,
-            user: %{id: message.user.id, name: message.user.name},
+            user: %{
+              id: message.user.id, 
+              name: message.user.name,
+              avatar_url: message.user.avatar_url,
+              deactivated_at: message.user.deactivated_at
+            },
+            reactions: [],
             inserted_at: message.inserted_at,
             parent_id: message.parent_id,
             reply_count: message.reply_count,

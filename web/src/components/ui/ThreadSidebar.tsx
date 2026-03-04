@@ -15,10 +15,9 @@ interface ThreadSidebarProps {
 }
 
 export function ThreadSidebar({ channelId, parentMessage, onClose }: ThreadSidebarProps) {
-  const [replies, setReplies] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
   const { addToast } = useToast();
-  const { user } = useChatStore();
+  const { user, threadMessages, setActiveThread, setThreadMessages } = useChatStore();
   const { sendTyping, addReaction, removeReaction } = useSocketChannel(channelId);
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -26,11 +25,13 @@ export function ThreadSidebar({ channelId, parentMessage, onClose }: ThreadSideb
     const tenantId = localStorage.getItem('tenant_id');
     if (!tenantId) return;
 
+    setActiveThread(parentMessage.id);
+
     const fetchReplies = async () => {
       setLoading(true);
       try {
         const msgs = await api.channels.getThreadMessages(tenantId, channelId, parentMessage.id);
-        setReplies(msgs);
+        setThreadMessages(msgs);
       } catch (err) {
         addToast('error', 'Error loading replies');
       } finally {
@@ -39,11 +40,15 @@ export function ThreadSidebar({ channelId, parentMessage, onClose }: ThreadSideb
     };
 
     fetchReplies();
-  }, [channelId, parentMessage.id, addToast]);
+
+    return () => {
+      setActiveThread(null);
+    };
+  }, [channelId, parentMessage.id, addToast, setActiveThread, setThreadMessages]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [replies]);
+  }, [threadMessages]);
 
   return (
     <div className="w-80 border-l dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex flex-col h-full">
@@ -62,10 +67,10 @@ export function ThreadSidebar({ channelId, parentMessage, onClose }: ThreadSideb
         
         {/* Render Replies */}
         <div className="flex-1 overflow-y-auto min-h-[300px]">
-           {loading ? (
+           {loading && threadMessages.length === 0 ? (
              <div className="p-4 text-center text-gray-400">Carregando...</div>
            ) : (
-             <MessageList messages={replies} currentUserId={user?.id} onAddReaction={addReaction} onRemoveReaction={removeReaction} />
+             <MessageList messages={threadMessages} currentUserId={user?.id} onAddReaction={addReaction} onRemoveReaction={removeReaction} />
            )}
            <div ref={bottomRef} />
         </div>

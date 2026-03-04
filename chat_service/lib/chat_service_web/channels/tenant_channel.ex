@@ -3,7 +3,7 @@ defmodule ChatServiceWeb.TenantChannel do
   alias ChatServiceWeb.Presence
 
   def join("tenant:" <> tenant_id, _params, socket) do
-    user_id = socket.assigns.user_id
+    _user_id = socket.assigns.user_id
 
     # Add tenant authorization here if needed
     send(self(), :after_join)

@@ -38,7 +38,7 @@ defmodule ChatServiceWeb.MessageController do
     })
   end
 
-  def create_message(conn, %{"channel_id" => channel_id, "body" => body, "client_id" => client_id}) do
+  def create_message(conn, %{"channel_id" => channel_id, "body" => body, "client_id" => client_id} = params) do
     user_id = conn.assigns.current_user.id
     tenant_id = conn.assigns.current_tenant_id
 
@@ -46,8 +46,17 @@ defmodule ChatServiceWeb.MessageController do
       raise ChatServiceWeb.ForbiddenError
     end
 
-    case Chat.create_message(tenant_id, channel_id, user_id, body, client_id) do
+    opts = if params["parent_id"], do: [parent_id: params["parent_id"]], else: []
+
+    case Chat.create_message(tenant_id, channel_id, user_id, body, client_id, opts) do
       {:ok, message} ->
+        # Broadcast via Endpoint to emulate socket message:new, like attachment endpoint does
+        ChatServiceWeb.Endpoint.broadcast!(
+          "channel:#{channel_id}",
+          "message:new",
+          %{message: message_to_map(message)}
+        )
+      
         conn
         |> put_status(:created)
         |> json(message_to_map(message))
@@ -143,11 +152,32 @@ defmodule ChatServiceWeb.MessageController do
   end
 
   defp message_to_map(message) do
+    user = if Ecto.assoc_loaded?(message.user) && message.user, do: message.user, else: nil
+    reactions = if Ecto.assoc_loaded?(message.reactions) && message.reactions, do: message.reactions, else: []
+
     %{
       id: message.id,
       body: message.body,
       client_id: message.client_id,
-      user: %{id: message.user.id, name: message.user.name},
+      user: if(user, do: %{
+        id: user.id, 
+        name: user.name, 
+        avatar_url: user.avatar_url,
+        deactivated_at: user.deactivated_at
+      }, else: %{id: nil, name: "Unknown"}),
+      reactions: Enum.map(reactions, fn r ->
+        r_user = if Ecto.assoc_loaded?(r.user) && r.user, do: r.user, else: nil
+        %{
+          id: r.id,
+          emoji: r.emoji,
+          user: if(r_user, do: %{id: r_user.id, name: r_user.name}, else: %{id: nil, name: "Unknown"})
+        }
+      end),
+      parent_id: message.parent_id,
+      reply_count: message.reply_count,
+      attachment_url: message.attachment_url,
+      attachment_type: message.attachment_type,
+      attachment_name: message.attachment_name,
       edited_at: message.edited_at,
       deleted_at: message.deleted_at,
       inserted_at: message.inserted_at
